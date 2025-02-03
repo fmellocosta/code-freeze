@@ -1,0 +1,15 @@
+name: Code Freeze Check
+
+on:
+  pull_request:
+    types: [closed]
+
+jobs:
+  code-freeze-check:
+    if: github.event.pull_request.merged == true
+    runs-on: ubuntu-latest
+    steps:
+        - name: Fail during code freeze
+          run: |
+            echo "Code freeze is in effect. Blocking merge."
+            exit 1
